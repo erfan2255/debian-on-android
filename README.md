@@ -8,7 +8,7 @@
 
 <div align="center">
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
-    <h1>Debian on Android</h1>
+    <h1>Debian 13 on Android</h1>
     <h3>Turn your Android device into a portable Linux PC</h3>
     <p>A simple, one-line command to install a full Debian (XFCE) desktop environment on any Android device using Termux</p>
     <p>
