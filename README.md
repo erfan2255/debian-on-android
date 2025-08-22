@@ -10,8 +10,8 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
     <h1>Debian on Android</h1>
     <p><strong>by CoreLand</strong></p>
-    <h3>Turn your Android device into a portable Linux PC.</h3>
-    <p>A simple, one-line command to install a full Debian (XFCE) desktop environment on any Android device using Termux.</p>
+    <h3>Turn your Android device into a portable Linux PC</h3>
+    <p>A simple, one-line command to install a full Debian (XFCE) desktop environment on any Android device using Termux</p>
     <p>
         <img src="https://img.shields.io/github/license/YourUsername/Debian-On-Android?style=flat-square" alt="License">
         <img src="https://img.shields.io/github/last-commit/YourUsername/Debian-On-Android?style=flat-square" alt="Last Commit">
@@ -119,7 +119,6 @@
 
 <h3>► Screenshots</h3>
 <p>Here is a preview of the Debian 13 XFCE desktop environment you will be installing.</p>
-<p><em>(Note: You will need to take your own screenshots, upload them to a <code>screenshots</code> folder in your repository, and update the links below.)</em></p>
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
     <div style="text-align: center;">
