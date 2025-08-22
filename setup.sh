@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Enhanced Automated Debian Setup Script
-# This script installs a Debian environment with a full XFCE desktop,
-# It is designed to be run in a Termux-like environment.
+# Automated Debian Setup Script
+# This script installs a Debian environment with a full XFCE desktop
+# It is designed to be run in a Termux-like environment
 #
 
 # Stop the script if any command fails
@@ -25,8 +25,8 @@ cat << "EOF"
 | |_| |  __/ |_) | | (_| | | | |
 |____/ \___|_.__/|_|\__,_|_| |_|
 EOF
-echo -e "\n${C_GREEN}Welcome to the Enhanced Debian Setup Script!${C_RESET}"
-echo "This will prepare a full desktop environment for you."
+echo -e "\n${C_GREEN}Welcome to the Debian Desktop Setup${C_RESET}"
+echo "Configuring the environment on your device..."
 echo ""
 
 # --- [1/6] User Input ---
