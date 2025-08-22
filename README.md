@@ -17,8 +17,6 @@
         <img src="https://img.shields.io/github/last-commit/erfan2255/Debian-On-Android?style=flat-square" alt="Last Commit">
         <img src="https://img.shields.io/github/downloads/erfan2255/Debian-On-Android/total?style=flat-square" alt="Downloads">
         <a href="https://opensource.org"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source"></a>
-        <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Ferfan2255%2FDebian-On-Android&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=false"/></a>
-    </p>
 </div>
 
 <hr>
