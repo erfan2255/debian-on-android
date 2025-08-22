@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Debian-On-Android README </title>
 </head>
 <body>
 
@@ -14,9 +13,10 @@
     <h3>Turn your Android device into a portable Linux PC.</h3>
     <p>A simple, one-line command to install a full Debian (XFCE) desktop environment on any Android device using Termux.</p>
     <p>
-        <a href="https://github.com/YourUsername/Debian-On-Android/blob/main/LICENSE"><img src="https://img.shields.io/github/license/YourUsername/Debian-On-Android?style=for-the-badge" alt="License"></a>
-        <a href="https://github.com/YourUsername/Debian-On-Android/commits/main"><img src="https://img.shields.io/github/last-commit/YourUsername/Debian-On-Android?style=for-the-badge" alt="Last Commit"></a>
-        <img src="https://img.shields.io/badge/Language-Bash-blue?style=for-the-badge" alt="Language">
+        <img src="https://img.shields.io/github/license/YourUsername/Debian-On-Android?style=flat-square" alt="License">
+        <img src="https://img.shields.io/github/last-commit/YourUsername/Debian-On-Android?style=flat-square" alt="Last Commit">
+        <img src="https://img.shields.io/github/downloads/YourUsername/Debian-On-Android/total?style=flat-square" alt="Downloads">
+        <a href="https://opensource.org"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source"></a>
         <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FYourUsername%2FDebian-On-Android&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=visitors&edge_flat=false"/></a>
     </p>
 </div>
@@ -73,40 +73,44 @@
 <pre><code>localhost:1</code></pre>
 <p>Enter the VNC password you created in the previous step. You will now see your Debian desktop!</p>
 
+<h4>6. Stop the VNC Server</h4>
+<p>When you are finished with your session, you can stop the VNC server from inside Debian by typing:</p>
+<pre><code>stopvnc</code></pre>
+
 <hr>
 
 <h3>► What's Included?</h3>
-<table width="100%">
+<table width="100%" style="border-collapse: collapse;">
     <thead>
-        <tr>
-            <th>Component</th>
-            <th>Description</th>
+        <tr style="border-bottom: 1px solid #ddd;">
+            <th style="padding: 8px; text-align: left;">Component</th>
+            <th style="padding: 8px; text-align: left;">Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><strong>Operating System</strong></td>
-            <td>Debian 13 (Trixie)</td>
+            <td style="padding: 8px;"><strong>Operating System</strong></td>
+            <td style="padding: 8px;">Debian 13 (Trixie)</td>
         </tr>
         <tr>
-            <td><strong>Desktop Environment</strong></td>
-            <td>XFCE 4</td>
+            <td style="padding: 8px;"><strong>Desktop Environment</strong></td>
+            <td style="padding: 8px;">XFCE 4</td>
         </tr>
         <tr>
-            <td><strong>Web Browser</strong></td>
-            <td>Firefox ESR</td>
+            <td style="padding: 8px;"><strong>Web Browser</strong></td>
+            <td style="padding: 8px;">Firefox ESR</td>
         </tr>
         <tr>
-            <td><strong>Office Suite</strong></td>
-            <td>LibreOffice (Writer, Calc, Impress, etc.)</td>
+            <td style="padding: 8px;"><strong>Office Suite</strong></td>
+            <td style="padding: 8px;">LibreOffice (Writer, Calc, Impress, etc.)</td>
         </tr>
         <tr>
-            <td><strong>VNC Server</strong></td>
-            <td>TigerVNC</td>
+            <td style="padding: 8px;"><strong>VNC Server</strong></td>
+            <td style="padding: 8px;">TigerVNC</td>
         </tr>
         <tr>
-            <td><strong>System Utilities</strong></td>
-            <td><code>sudo</code>, <code>nano</code>, <code>adduser</code>, and more.</td>
+            <td style="padding: 8px;"><strong>System Utilities</strong></td>
+            <td style="padding: 8px;"><code>sudo</code>, <code>nano</code>, <code>adduser</code>, and more.</td>
         </tr>
     </tbody>
 </table>
@@ -116,20 +120,17 @@
 <h3>► Screenshots</h3>
 <p>Here is a preview of the Debian 13 XFCE desktop environment you will be installing.</p>
 <p><em>(Note: You will need to take your own screenshots, upload them to a <code>screenshots</code> folder in your repository, and update the links below.)</em></p>
-<table width="100%">
-    <thead>
-        <tr>
-            <th align="center">Login Screen</th>
-            <th align="center">Desktop View</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr align="center">
-            <td><img src="https://raw.githubusercontent.com/YourUsername/Debian-On-Android/main/screenshots/screenshot1.png" alt="Debian Login" width="400"/></td>
-            <td><img src="https://raw.githubusercontent.com/YourUsername/Debian-On-Android/main/screenshots/screenshot2.png" alt="Debian Desktop" width="400"/></td>
-        </tr>
-    </tbody>
-</table>
+
+<div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
+    <div style="text-align: center;">
+        <img src="https://raw.githubusercontent.com/YourUsername/Debian-On-Android/main/screenshots/screenshot1.png" alt="Debian Login" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
+        <p><strong>Login Screen</strong></p>
+    </div>
+    <div style="text-align: center;">
+        <img src="https://raw.githubusercontent.com/YourUsername/Debian-On-Android/main/screenshots/screenshot2.png" alt="Debian Desktop" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
+        <p><strong>Desktop View</strong></p>
+    </div>
+</div>
 
 <hr>
 
@@ -141,4 +142,5 @@
 
 </body>
 </html>
+
 
