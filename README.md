@@ -7,7 +7,7 @@
 <body>
 
 <div align="center">
-    <img src="https://raw.githubusercontent.com/debian-infra/artwork/main/logo/debian-logo-256.png" alt="Debian Logo" width="150"/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
     <h1>Debian on Android</h1>
     <p><strong>by CoreLand</strong></p>
     <h3>Turn your Android device into a portable Linux PC.</h3>
