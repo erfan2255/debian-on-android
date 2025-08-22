@@ -8,7 +8,7 @@
 
 <div align="center">
     <img src="https://raw.githubusercontent.com/debian-infra/artwork/main/logo/debian-logo-256.png" alt="Debian Logo" width="150"/>
-    <h1>Debian-On-Android</h1>
+    <h1>Debian on Android</h1>
     <p><strong>by CoreLand</strong></p>
     <h3>Turn your Android device into a portable Linux PC.</h3>
     <p>A simple, one-line command to install a full Debian (XFCE) desktop environment on any Android device using Termux.</p>
