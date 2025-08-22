@@ -33,7 +33,6 @@
     <li><strong>📚 Essential Software:</strong> Comes pre-loaded with Firefox ESR for web browsing and the complete LibreOffice suite for productivity.</li>
     <li><strong>✨ User-Friendly:</strong> Interactive prompts for username, password, and VNC screen resolution.</li>
     <li><strong>⚡ Convenient Aliases:</strong> Includes simple shortcuts (<code>startvnc</code>, <code>stopvnc</code>, <code>exit</code>) for easy management.</li>
-    <li><strong>🌍 Timezone Pre-configured:</strong> Sets the system timezone to Asia/Tehran by default.</li>
 </ul>
 
 <hr>
