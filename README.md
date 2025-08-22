@@ -12,9 +12,9 @@
     <h3>Turn your Android device into a portable Linux PC</h3>
     <p>A simple, one-line command to install a full Debian (XFCE) desktop environment on any Android device using Termux</p>
     <p>
-        <img src="https://img.shields.io/github/license/erfan2255/Debian-On-Android?style=flat-square" alt="License">
-        <img src="https://img.shields.io/github/last-commit/erfan2255/Debian-On-Android?style=flat-square" alt="Last Commit">
-        <img src="https://img.shields.io/github/downloads/erfan2255/Debian-On-Android/total?style=flat-square" alt="Downloads">
+        <img src="https://img.shields.io/github/license/erfan2255/Debian-On-Android?style=square" alt="License">
+        <img src="https://img.shields.io/github/last-commit/erfan2255/Debian-On-Android?style=square" alt="Last Commit">
+        <img src="https://img.shields.io/github/downloads/erfan2255/Debian-On-Android/total?style=square" alt="Downloads">
         <a href="https://opensource.org"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source"></a>
 </p>
 </div>
