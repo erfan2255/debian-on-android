@@ -32,7 +32,7 @@
     <li><strong>🖥️ Full Desktop Environment:</strong> Installs the lightweight and user-friendly XFCE desktop.</li>
     <li><strong>📚 Essential Software:</strong> Comes pre-loaded with Firefox ESR for web browsing and the complete LibreOffice suite for productivity.</li>
     <li><strong>✨ User-Friendly:</strong> Interactive prompts for username, password, and VNC screen resolution.</li>
-    <li><strong>⚡ Convenient Aliases:</strong> Includes simple shortcuts (<code>startvnc</code>, <code>stopvnc</code>, <code>exit</code>) for easy management.</li>
+    <li><strong>⚡ Convenient Aliases:</strong> Includes simple shortcuts for easy management.</li>
 </ul>
 
 <hr>
@@ -119,12 +119,12 @@
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
     <div style="text-align: center;">
-        <img src="https://raw.githubusercontent.com/erfan2255/debian-on-android/images/IMG_20250823_181327.png" alt="Debian Login" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
-        <p><strong>Login Screen</strong></p>
+        <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/IMG_20250823_181327.png" alt="Debian info" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
+        <p><strong>Debian info</strong></p>
     </div>
     <div style="text-align: center;">
-        <img src="https://raw.githubusercontent.com/erfan2255/debian-on-android/images/IMG_20250823_181349.png" alt="Debian Desktop" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
-        <p><strong>Desktop View</strong></p>
+        <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/IMG_20250823_181349.png" alt="Libre Office" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
+        <p><strong>Libre Office</strong></p>
     </div>
 </div>
 
