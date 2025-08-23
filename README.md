@@ -119,11 +119,11 @@
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
     <div style="text-align: center;">
-        <img src="https://raw.githubusercontent.com/YourUsername/Debian-On-Android/main/screenshots/screenshot1.png" alt="Debian Login" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
+        <img src="https://raw.githubusercontent.com/erfan2255/debian-on-android/images/IMG_20250823_181327.png" alt="Debian Login" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
         <p><strong>Login Screen</strong></p>
     </div>
     <div style="text-align: center;">
-        <img src="https://raw.githubusercontent.com/YourUsername/Debian-On-Android/main/screenshots/screenshot2.png" alt="Debian Desktop" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
+        <img src="https://raw.githubusercontent.com/erfan2255/debian-on-android/images/IMG_20250823_181349.png" alt="Debian Desktop" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
         <p><strong>Desktop View</strong></p>
     </div>
 </div>
@@ -134,7 +134,7 @@
 <p>If you find this project useful, please give it a ⭐ to show your support!</p>
 
 <h3>► License</h3>
-<p>This project is licensed under the MIT License. See the <a href="https://github.com/YourUsername/Debian-On-Android/blob/main/LICENSE">LICENSE</a> file for details.</p>
+<p>This project is licensed under the MIT License. See the <a href="https://github.com/erfan2255/Debian-On-Android/blob/main/LICENSE">LICENSE</a> file for details.</p>
 
 <hr>
 <div align="center">
