@@ -6,6 +6,10 @@
 </head>
 <body>
 
+<div align="right">
+    <a href="README-fa.md">فارسی</a>
+</div>
+
 <div align="center">
     <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
     <h1>Debian 13 on Android</h1>
@@ -16,7 +20,7 @@
         <img src="https://img.shields.io/github/last-commit/erfan2255/Debian-On-Android?style=square" alt="Last Commit">
         <img src="https://img.shields.io/github/downloads/erfan2255/Debian-On-Android/total?style=square" alt="Downloads">
         <a href="https://opensource.org"><img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" alt="Open Source"></a>
-</p>
+    </p>
 </div>
 
 <hr>
@@ -143,6 +147,3 @@
 
 </body>
 </html>
-
-
-
