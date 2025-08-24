@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div align="center">
+<div align="left">
     <a href="README.md">English</a>
 </div>
 
