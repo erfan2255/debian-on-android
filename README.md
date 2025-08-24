@@ -7,7 +7,7 @@
 <body>
 
 <div align="right">
-    <a href="README-fa.md">فارسی</a>
+    <a href="README-FA.md">فارسی</a>
 </div>
 
 <div align="center">
