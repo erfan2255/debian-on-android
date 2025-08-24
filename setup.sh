@@ -85,9 +85,17 @@ run_as_user() {
     proot-distro login debian --user $NEW_USER --shared-tmp -- /bin/bash -c "$@"
 }
 
-echo "--> Installing XFCE Desktop, VNC Server, Firefox, and LibreOffice..."
-INSTALL_CMD="apt-get install -y xfce4 xfce4-goodies tigervnc-standalone-server dbus-x11 firefox-esr libreoffice libreoffice-gtk3 libreoffice-gnome"
-echo "${NEW_PASS}" | run_as_user "sudo -S $INSTALL_CMD"
+echo "--> Installing Core Desktop Environment..."
+INSTALL_CORE="apt-get install -y xfce4 xfce4-goodies tigervnc-standalone-server dbus-x11"
+echo "${NEW_PASS}" | run_as_user "sudo -S $INSTALL_CORE"
+
+echo "--> Installing Firefox Web Browser..."
+INSTALL_FIREFOX="apt-get install -y firefox-esr"
+echo "${NEW_PASS}" | run_as_user "sudo -S $INSTALL_FIREFOX"
+
+echo "--> Installing LibreOffice Suite..."
+INSTALL_OFFICE="apt-get install -y --no-install-recommends libreoffice libreoffice-gtk3 libreoffice-gnome"
+echo "${NEW_PASS}" | run_as_user "sudo -S $INSTALL_OFFICE"
 
 
 # --- [5/6] Create VNC Resolution Selector Script ---
