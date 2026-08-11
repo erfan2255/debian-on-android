@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<div align="right">
-    <a href="README-FA.md">فارسی</a>
+<div align="left">
+    <a href="README-FA.md">Persian</a>
 </div>
 
 <div align="center">
