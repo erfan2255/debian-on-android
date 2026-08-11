@@ -325,6 +325,20 @@ Terminal=false
 Categories=Utility;
 EOF
     run_as_user "chmod +x ~/Desktop/Run_Windows_App.desktop"
+
+    # 3. MS Office Preparation Tool
+    cat << 'EOF' | run_as_user "cat > ~/Desktop/Prepare_MS_Office.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=📚 Prepare MS Office
+Comment=Install dependencies for Microsoft Office (Wine)
+Exec=sh -c 'zenity --info --text="Preparing Wine for MS Office. This may take a few minutes. Please wait for the success message." && WINEARCH=win32 winetricks -q corefonts tahoma msxml6 riched20 gdiplus && zenity --info --text="Success! You can now use the Run Windows App tool to install Office."'
+Icon=wine
+Terminal=false
+Categories=Utility;
+EOF
+    run_as_user "chmod +x ~/Desktop/Prepare_MS_Office.desktop"
 fi
 
 echo "--> Configuring GPU Tests..."
@@ -463,5 +477,5 @@ echo -e "- Just DOUBLE-CLICK any .exe file to run it!"
 echo -e "- Use the '🎮 Run Windows App' tool on your desktop for a visual file picker."
 echo ""
 echo -e "${C_GREEN}=================================================${C_RESET}"
-echo -e "${C_CYAN}           Created by Antigravity                ${C_RESET}"
+echo -e "${C_CYAN}             Created by Erfan2255                 ${C_RESET}"
 echo -e "${C_GREEN}=================================================${C_RESET}"
