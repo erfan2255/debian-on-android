@@ -6,15 +6,15 @@
 </head>
 <body>
 
-<div align="left">
+<div align="right">
     <a href="README.md">English</a>
 </div>
 
 <div align="center">
     <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
-    <h1>دبیان ۱۳ روی اندروید</h1>
-    <h3>دستگاه اندرویدی خود را به یک کامپیوتر لینوکس قابل حمل تبدیل کنید</h3>
-    <p>یک دستور ساده و تک‌خطی برای نصب محیط دسکتاپ کامل دبیان (XFCE) روی هر دستگاه اندرویدی با استفاده از ترموکس</p>
+    <h1>سیستم عامل نهایی - دبیان 13 روی اندروید - آپدیت فوق‌حرفه‌ای V12</h1>
+    <h3>دستگاه اندرویدی خود را به یک کامپیوتر لینوکس قابل حمل و یک کنسول قدرتمند برای بازی‌های ویندوز تبدیل کنید</h3>
+    <p>یک دستور ساده و تک‌خطی برای نصب یک محیط دبیان عمیقاً بهینه‌شده با شتاب‌دهنده سخت‌افزاری، همراه با ابزارهای برنامه‌نویسی هوش مصنوعی و شبیه‌ساز کامل ویندوز روی هر دستگاه اندرویدی با استفاده از Termux.</p>
     <p>
         <img src="https://img.shields.io/github/license/erfan2255/Debian-On-Android?style=square" alt="License">
         <img src="https://img.shields.io/github/last-commit/erfan2255/Debian-On-Android?style=square" alt="Last Commit">
@@ -24,102 +24,97 @@
 
 <hr>
 
-<h3>◄ هدف</h3>
-<p>هدف این پروژه ارائه یک روش یکپارچه و کاملاً خودکار برای کاربران است تا بتوانند یک تجربه دسکتاپ دبیان قدرتمند و غنی از امکانات را روی دستگاه اندرویدی خود بدون نیاز به دسترسی روت داشته باشند. این اسکریپت برای توسعه‌دهندگان، دانشجویان و علاقه‌مندان به لینوکس طراحی شده است که به دنبال یک محیط محاسباتی قابل حمل و پایدار هستند.</p>
+<h3>► هدف</h3>
+<p>هدف این پروژه ارائه روشی یکپارچه و کاملاً خودکار به کاربران برای داشتن یک سیستم عامل قدرتمند و پر از امکانات روی دستگاه اندرویدی است، بدون نیاز به دسترسی روت. این پروژه اکنون به یک "جایگزین دسکتاپ" تبدیل شده است که برای توسعه‌دهندگان، گیمرهای حرفه‌ای و علاقه‌مندان به هوش مصنوعی طراحی شده است تا بتوانند از حداکثر توان پردازنده‌های اسنپدراگون خود استفاده کنند.</p>
 
 <hr>
 
-<h3>◄ ویژگی‌ها</h3>
+<h3>► امکانات فوق‌حرفه‌ای (آپدیت‌های V12)</h3>
 <ul>
-    <li><strong>🚀 کاملاً خودکار:</strong> اسکریپت همه چیز را از راه‌اندازی اولیه تا ایجاد کاربر و نصب نرم‌افزار مدیریت می‌کند.</li>
-    <li><strong>🖥️ محیط دسکتاپ کامل:</strong> دسکتاپ سبک و کاربرپسند XFCE را نصب می‌کند.</li>
-    <li><strong>📚 نرم‌افزارهای ضروری:</strong> با فایرفاکس ESR برای وب‌گردی و مجموعه کامل لیبره‌آفیس برای کارهای اداری از پیش بارگذاری شده است.</li>
-    <li><strong>✨ کاربرپسند:</strong> دارای اعلان‌های تعاملی برای نام کاربری، رمز عبور و وضوح صفحه VNC.</li>
-    <li><strong>⚡ دستورات میانبر راحت:</strong> شامل میانبرهای ساده برای مدیریت آسان.</li>
-    <li><strong>🌍 منطقه زمانی از پیش تنظیم شده:</strong> منطقه زمانی سیستم به طور پیش‌فرض روی آسیا/تهران تنظیم می‌شود.</li>
+    <li><strong>🚀 نصب گرافیکی VIP:</strong> یک نصب‌کننده TUI تمام‌صفحه و زیبا (Dialog). به جای تایپ کردن در ترمینال، از کلیدهای جهت‌نما برای انتخاب امکانات سیستم عامل خود به صورت بصری استفاده کنید.</li>
+    <li><strong>🎮 شبیه‌سازی ویندوز برای گیمرهای حرفه‌ای:</strong> یکپارچه‌سازی داخلی Box86/Box64 و Wine. نصب خودکار DXVK، VKD3D (DirectX 12) و D8VK برای اجرای بی‌نقص بازی‌های AAA.</li>
+    <li><strong>⚙️ کتابخانه‌های سراسری ویندوز:</strong> یک ابزار گرافیکی با ۱ کلیک برای تزریق دائمی Visual C++ Redistributables (2010-2015) و کامپایلرهای DX برای جلوگیری از خطاهای DLL در WineHQ.</li>
+    <li><strong>📚 سازگاری با مایکروسافت آفیس:</strong> یک ابزار گرافیکی داخلی برای آماده‌سازی محیط شما جهت اجرای MS Office (Word, Excel, PowerPoint) و نرم‌افزار SPSS از طریق `winetricks`.</li>
+    <li><strong>🖱️ اجرای برنامه‌های ویندوز بدون ترمینال:</strong> روی فایل‌های `.exe` مستقیماً در فایل منیجر لینوکس خود دوبار کلیک کنید تا اجرا شوند، یا از ابزار گرافیکی "Run Windows App" استفاده کنید!</li>
+    <li><strong>🛒 مرکز نرم‌افزار دبیان:</strong> برنامه‌های سنگین لینوکس (تلگرام، دیسکورد، GIMP، OBS Studio، بلندر، VS Code) را با استفاده از یک رابط تیک‌زدنی گرافیکی نصب کنید. بدون نیاز به ترمینال!</li>
+    <li><strong>🔋 سیستم مدیریت مصرف انرژی:</strong> جابجایی روان بین حالت‌های 🟢 ذخیره انرژی (رندر نرم‌افزاری)، 🟡 متعادل، و 🔴 عملکرد بالا (اورکلاک پردازنده گرافیکی Turnip) برای حفظ باتری.</li>
+    <li><strong>🤖 مرکز کدنویسی هوش مصنوعی:</strong> گزینه‌های از پیش تنظیم شده برای نصب Reasonix Desktop/CLI، Cursor IDE، Aider و VS Code.</li>
+    <li><strong>📱 دسکتاپ جادویی:</strong> همگام‌سازی خودکار پوشه‌های اندروید شما (Downloads, DCIM, Documents) با دسکتاپ لینوکس.</li>
+    <li><strong>👆 بهینه‌سازی‌های لمسی برای تبلت:</strong> حالت اختصاصی تبلت که مقیاس‌پذیری UI بالا (High DPI) و کیبورد مجازی Onboard را برای کنترل‌های لمسی بی‌نقص روی دستگاه‌هایی مانند Poco F3 یا Pad 7 فعال می‌کند.</li>
+    <li><strong>🌐 وب با شتاب‌دهنده سخت‌افزاری:</strong> بین Firefox ESR و یک مرورگر Chromium که به طور ویژه با فلگ‌های Vulkan برای پخش ویدیوی 1080p/4K با نرخ 60fps تنظیم شده است، انتخاب کنید.</li>
 </ul>
 
 <hr>
 
-<h3>◄ نیازمندی‌ها</h3>
+<h3>► پیش‌نیازها</h3>
 <ul>
-    <li>یک دستگاه اندرویدی (گوشی یا تبلت).</li>
-    <li>برنامه <a href="https://f-droid.org/en/packages/com.termux/">ترموکس</a> نصب شده باشد.</li>
-    <li>یک برنامه VNC Viewer (مانند <a href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android">RealVNC</a> یا <a href="https://play.google.com/store/apps/details?id=com.gaurav.avnc">AVNC</a>) روی دستگاه اندرویدی شما نصب شده باشد.</li>
-    <li>تقریباً ۴ تا ۵ گیگابایت فضای ذخیره‌سازی آزاد.</li>
+    <li>یک دستگاه اندرویدی (تلفن همراه یا تبلت) - پردازنده‌های اسنپدراگون برای شتاب‌دهنده سه‌بعدی Turnip توصیه می‌شوند.</li>
+    <li>برنامه <a href="https://f-droid.org/en/packages/com.termux/">Termux</a> (نصب شده از طریق F-Droid).</li>
+    <li>برنامه <a href="https://github.com/termux/termux-x11">Termux-X11</a> یا یک برنامه VNC Viewer.</li>
+    <li>حدود ۵ تا ۸ گیگابایت فضای ذخیره‌سازی آزاد.</li>
 </ul>
 
 <hr>
 
-<h3>◄ نصب و استفاده</h3>
+<h3>► نصب و استفاده</h3>
 
 <h4>۱. اجرای نصب‌کننده</h4>
-<p>دستور تک‌خطی زیر را در ترمینال ترموکس خود جای‌گذاری کرده و Enter را بزنید.</p>
+<p>دستور تک‌خطی زیر را در ترمینال Termux خود جای‌گذاری کرده و دکمه Enter را بزنید.</p>
 <pre><code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/erfan2255/debian-on-android/main/setup.sh)"</code></pre>
 
-<h4>۲. دنبال کردن اعلان‌ها</h4>
-<p>اسکریپت شما را برای ایجاد نام کاربری و رمز عبور برای سیستم دبیان جدیدتان راهنمایی می‌کند.</p>
+<h4>۲. سیستم عامل نهایی خود را بسازید</h4>
+<p>این اسکریپت جادوگر تعاملی نصب را اجرا می‌کند. شما می‌توانید سرور نمایش خود (X11/VNC)، درایورهای گرافیک (Turnip/VirGL)، محیط دسکتاپ (XFCE/LXQt/i3)، مرورگر، ابزارهای هوش مصنوعی و تنظیمات بازی ویندوز را انتخاب کنید.</p>
 
-<h4>۳. ورود به سیستم</h4>
-<p>پس از اتمام نصب، یک میانبر با نام <code>debian</code> در ترموکس ایجاد می‌شود. برای ورود، به سادگی تایپ کنید:</p>
-<pre><code>debian</code></pre>
+<h4>۳. ورود و انتخاب پروفایل انرژی</h4>
+<p>پس از اتمام نصب، یک دستور میانبر به نام <code>start-x11</code> در ترمینال Termux ایجاد می‌شود. برای اجرای دسکتاپ خود فقط کافیست تایپ کنید:</p>
+<pre><code>start-x11</code></pre>
+<blockquote>شما بلافاصله با منوی <strong>OS-Power</strong> روبرو می‌شوید. بر اساس نیاز باتری خود گزینه 1 (Power Saver)، 2 (Balanced) یا 3 (Performance) را انتخاب کنید و دسکتاپ شما بالا می‌آید!</blockquote>
 
-<h4>۴. راه‌اندازی سرور VNC</h4>
-<p>پس از ورود به محیط دبیان، دسکتاپ گرافیکی را با تایپ کردن دستور زیر راه‌اندازی کنید:</p>
-<pre><code>startvnc</code></pre>
-<blockquote>اولین باری که این دستور را اجرا می‌کنید، از شما خواسته می‌شود تا وضوح صفحه را انتخاب کرده و یک رمز عبور مخصوص VNC تنظیم کنید.</blockquote>
-
-<h4>۵. اتصال با کلاینت VNC</h4>
-<p>برنامه VNC Viewer خود را باز کرده و یک اتصال جدید به آدرس زیر ایجاد کنید:</p>
-<pre><code>localhost:1</code></pre>
-<p>رمز عبور VNC را که در مرحله قبل ایجاد کردید وارد کنید. اکنون دسکتاپ دبیان خود را خواهید دید!</p>
-
-<h4>۶. متوقف کردن سرور VNC</h4>
-<p>هنگامی که کارتان با جلسه تمام شد، می‌توانید سرور VNC را از داخل دبیان با تایپ کردن دستور زیر متوقف کنید:</p>
-<pre><code>stopvnc</code></pre>
+<h4>۴. نکات حرفه‌ای و پیشرفته</h4>
+<ul>
+    <li><strong>صدا:</strong> اگر صدا می‌خواهید، قبل از راه‌اندازی دسکتاپ، دستور <code>start-audio</code> را در Termux وارد کنید.</li>
+    <li><strong>بکاپ‌گیری:</strong> برای ایجاد یک اسنپ‌شات کامل از سیستم در پوشه Downloads اندروید، دستور <code>backup-debian</code> را در Termux تایپ کنید. برای بازیابی آن از دستور <code>restore-debian</code> استفاده کنید.</li>
+    <li><strong>تست گرافیک:</strong> دستور <code>gpu-test</code> را در داخل دبیان تایپ کنید تا از کارکرد صحیح شتاب‌دهنده‌های Vulkan/OpenGL خود مطمئن شوید.</li>
+</ul>
 
 <hr>
 
-<h3>◄ چه چیزهایی شامل می‌شود؟</h3>
-<table width="100%" style="border-collapse: collapse;">
+<h3>► چه چیزهایی در این بسته وجود دارد؟</h3>
+<table width="100%" style="border-collapse: collapse; text-align: right;" dir="rtl">
     <thead>
         <tr style="border-bottom: 1px solid #ddd;">
-            <th style="padding: 8px; text-align: right;">جزء</th>
-            <th style="padding: 8px; text-align: right;">توضیحات</th>
+            <th style="padding: 8px;">مؤلفه</th>
+            <th style="padding: 8px;">توضیحات</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td style="padding: 8px;"><strong>سیستم عامل</strong></td>
-            <td style="padding: 8px;">دبیان ۱۳ (Trixie)</td>
+            <td style="padding: 8px;">Debian 13 (Trixie)</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>درایورهای گرافیک</strong></td>
+            <td style="padding: 8px;">Mesa-Zink, Turnip, VirGL</td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><strong>ترجمه ویندوز</strong></td>
+            <td style="padding: 8px;">Box64, Box86, Wine, DXVK, VKD3D, D8VK</td>
         </tr>
         <tr>
             <td style="padding: 8px;"><strong>محیط دسکتاپ</strong></td>
-            <td style="padding: 8px;">XFCE 4</td>
+            <td style="padding: 8px;">XFCE 4 / LXQt / i3wm</td>
         </tr>
         <tr>
-            <td style="padding: 8px;"><strong>مرورگر وب</strong></td>
-            <td style="padding: 8px;">Firefox ESR</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;"><strong>مجموعه آفیس</strong></td>
-            <td style="padding: 8px;">لیبره‌آفیس (رایتر، کالک، ایمپرس و غیره)</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;"><strong>سرور VNC</strong></td>
-            <td style="padding: 8px;">TigerVNC</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;"><strong>ابزارهای سیستمی</strong></td>
-            <td style="padding: 8px;"><code>sudo</code>, <code>nano</code>, <code>adduser</code>, و بیشتر.</td>
+            <td style="padding: 8px;"><strong>بهره‌وری و هوش مصنوعی</strong></td>
+            <td style="padding: 8px;">Reasonix, Cursor, Aider, VS Code, LibreOffice</td>
         </tr>
     </tbody>
 </table>
 
 <hr>
 
-<h3>◄ تصاویر صفحه</h3>
-<p>در اینجا پیش‌نمایشی از محیط دسکتاپ دبیان ۱۳ XFCE که نصب خواهید کرد، آمده است.</p>
+<h3>► تصاویر</h3>
+<p>در اینجا پیش‌نمایشی از محیط دسکتاپ Debian 13 XFCE که قرار است نصب کنید آورده شده است.</p>
 
 <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
     <div style="text-align: center;">
@@ -128,17 +123,17 @@
     </div>
     <div style="text-align: center;">
         <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/IMG_20250823_181349.png" alt="Libre Office" style="width: 400px; max-width: 90%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);"/>
-        <p><strong>لیبره‌آفیس</strong></p>
+        <p><strong>لیبره آفیس (Libre Office)</strong></p>
     </div>
 </div>
 
 <hr>
 
-<h3>◄ حمایت خود را نشان دهید</h3>
-<p>اگر این پروژه برای شما مفید بود، لطفاً با دادن یک ⭐ از آن حمایت کنید!</p>
+<h3>► حمایت از پروژه</h3>
+<p>اگر این پروژه برای شما مفید بود، لطفاً با دادن یک ⭐ (ستاره) از آن حمایت کنید!</p>
 
-<h3>◄ مجوز</h3>
-<p>این پروژه تحت مجوز MIT منتشر شده است. برای جزئیات بیشتر به فایل <a href="https://github.com/erfan2255/Debian-On-Android/blob/main/LICENSE">LICENSE</a> مراجعه کنید.</p>
+<h3>► مجوز (License)</h3>
+<p>این پروژه تحت مجوز MIT منتشر شده است. برای جزئیات بیشتر فایل <a href="https://github.com/erfan2255/Debian-On-Android/blob/main/LICENSE">LICENSE</a> را ببینید.</p>
 
 <hr>
 <div align="center">
