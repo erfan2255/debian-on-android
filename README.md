@@ -12,7 +12,7 @@
 
 <div align="center">
     <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
-    <h1>Erfan2255 Ultimate OS (Debian 13 on Android) - V8 Masterclass</h1>
+    <h1>Ultimate OS - Debian 13 on Android - V8 Masterclass</h1>
     <h3>Turn your Android device into a portable Linux PC & Windows Gaming Powerhouse</h3>
     <p>A simple, one-line command to install a deeply optimized, hardware-accelerated Debian environment with AI coding agents and full Windows emulation on any Android device using Termux.</p>
     <p>
