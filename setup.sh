@@ -34,6 +34,10 @@ echo -e "${C_BLUE}>>> Requesting Android Storage Permissions (for Desktop integr
 termux-setup-storage
 sleep 2
 
+echo -e "${C_BLUE}>>> Initializing VIP Setup UI...${C_RESET}"
+pkg update -y > /dev/null 2>&1 || true
+pkg install dialog -y > /dev/null 2>&1 || true
+
 # --- [1] Phantom Process Check ---
 echo -e "\n${C_BLUE}>>> [1/8] Android System Check...${C_RESET}"
 API_LEVEL=$(getprop ro.build.version.sdk 2>/dev/null || echo "0")
@@ -48,12 +52,8 @@ else
     echo "Android version looks good. No Phantom Process issues expected."
 fi
 
-# --- [2] User Configuration Prompts ---
-echo -e "\n${C_YELLOW}>>> [2/8] Select Display Server Setup${C_RESET}"
-echo "1) VNC Only (Stable, widely compatible)"
-echo "2) Termux-X11 Only (Better integration, faster)"
-echo "3) Both"
-read -p "Choose [3]: " DISP_CHOICE
+# --- [2] User Configuration Prompts (VIP UI) ---
+DISP_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Display Server" --menu "Choose your Display Server:" 15 60 3 "1" "VNC Only (Stable)" "2" "Termux-X11 (Hardware Accel)" "3" "Both (Recommended)" 3>&1 1>&2 2>&3)
 DISP_CHOICE=${DISP_CHOICE:-3}
 
 WANT_VNC=false
@@ -63,72 +63,47 @@ if [ "$DISP_CHOICE" == "2" ]; then WANT_X11=true; fi
 if [ "$DISP_CHOICE" == "3" ]; then WANT_VNC=true; WANT_X11=true; fi
 
 if $WANT_X11; then
-    echo -e "\n${C_YELLOW}>>> Select Hardware Acceleration (Termux-X11)${C_RESET}"
-    echo "1) Snapdragon/Adreno Optimized (Turnip + Zink) - Recommended for Poco F3 / Pad 7"
-    echo "2) Universal (VirGL) - Recommended for Mali GPUs"
-    echo "3) None (Software Rendering)"
-    read -p "Choose [1]: " HW_CHOICE
+    HW_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Hardware Acceleration" --menu "Select GPU Acceleration (Termux-X11):" 15 75 3 "1" "Snapdragon/Adreno (Turnip + Zink) - Poco F3 / Pad 7" "2" "Universal (VirGL) - Mali GPUs" "3" "None (Software Rendering)" 3>&1 1>&2 2>&3)
     HW_CHOICE=${HW_CHOICE:-1}
 else
     HW_CHOICE=3
 fi
 
-echo -e "\n${C_YELLOW}>>> Select Desktop Environment${C_RESET}"
-echo "1) XFCE4 (Balanced, Beautiful, Highly Recommended)"
-echo "2) LXQt (Ultra-lightweight battery saver)"
-echo "3) i3wm (Keyboard-driven, minimalist)"
-read -p "Choose [1]: " DE_CHOICE
+DE_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Desktop Environment" --menu "Select your Desktop:" 15 60 3 "1" "XFCE4 (Balanced & Beautiful)" "2" "LXQt (Ultra-lightweight battery saver)" "3" "i3wm (Keyboard-driven minimalism)" 3>&1 1>&2 2>&3)
 DE_CHOICE=${DE_CHOICE:-1}
 
-echo -e "\n${C_YELLOW}>>> Select UI Scaling & Touch Mode${C_RESET}"
-echo "1) Tablet Mode (Large Icons, High DPI, Virtual On-Screen Keyboard)"
-echo "2) Desktop Mode (Standard Mouse/Keyboard Scaling)"
-read -p "Choose [1]: " TOUCH_CHOICE
+TOUCH_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "UI Scaling & Touch" --menu "Select UI Mode:" 15 65 2 "1" "Tablet Mode (High DPI, On-Screen Keyboard)" "2" "Desktop Mode (Standard Mouse/Keyboard)" 3>&1 1>&2 2>&3)
 TOUCH_CHOICE=${TOUCH_CHOICE:-1}
 
-echo -e "\n${C_YELLOW}>>> Select Web Browser${C_RESET}"
-echo "1) Firefox (Standard)"
-echo "2) Chromium (Hardware Accelerated via Vulkan)"
-echo "3) Both"
-echo "4) None"
-read -p "Choose [3]: " BROW_CHOICE
+BROW_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Web Browser" --menu "Select Web Browser:" 15 60 4 "1" "Firefox (Standard)" "2" "Chromium (Hardware Accelerated Vulkan)" "3" "Both" "4" "None" 3>&1 1>&2 2>&3)
 BROW_CHOICE=${BROW_CHOICE:-3}
 
-echo -e "\n${C_YELLOW}>>> Select Graphical AI Code Editor${C_RESET}"
-echo "1) Reasonix Desktop App (ARM64)"
-echo "2) Cursor IDE (ARM64)"
-echo "3) Visual Studio Code (ARM64)"
-echo "4) None"
-read -p "Choose [1]: " IDE_CHOICE
+IDE_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "AI Code Editor" --menu "Select Graphical AI Editor:" 15 60 4 "1" "Reasonix Desktop App" "2" "Cursor IDE" "3" "Visual Studio Code" "4" "None" 3>&1 1>&2 2>&3)
 IDE_CHOICE=${IDE_CHOICE:-1}
 
-echo -e "\n${C_YELLOW}>>> Select CLI AI Coding Agents${C_RESET}"
-echo "1) Reasonix CLI (Node.js)"
-echo "2) Aider (Python)"
-echo "3) Both"
-echo "4) None"
-read -p "Choose [4]: " CLI_CHOICE
+CLI_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "CLI Coding Agents" --menu "Select Terminal AI Agents:" 15 60 4 "1" "Reasonix CLI" "2" "Aider (Python)" "3" "Both" "4" "None" 3>&1 1>&2 2>&3)
 CLI_CHOICE=${CLI_CHOICE:-4}
 
-echo -e "\n${C_YELLOW}>>> Select PC Gaming/Emulation Support${C_RESET}"
-echo "1) Install Pro-Gamer Windows Emulation (Box86/64, Wine, DXVK, VKD3D, DX8)"
-echo "2) None"
-read -p "Choose [1]: " GAMING_CHOICE
+GAMING_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Windows Emulation" --menu "Install Pro-Gamer Windows Emulation (Wine/DXVK)?" 15 60 2 "1" "Yes (Recommended)" "2" "No" 3>&1 1>&2 2>&3)
 GAMING_CHOICE=${GAMING_CHOICE:-1}
 
-echo -e "\n${C_YELLOW}>>> Install Developer Toolkit?${C_RESET}"
-echo "1) Yes (Python, Node.js, Go, Rust, Git, Build-tools)"
-echo "2) No"
-read -p "Choose [1]: " DEV_CHOICE
+DEV_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Developer Toolkit" --menu "Install compilers (Python, Node, Go, Rust)?" 15 60 2 "1" "Yes" "2" "No" 3>&1 1>&2 2>&3)
 DEV_CHOICE=${DEV_CHOICE:-1}
 
-echo -e "\n${C_YELLOW}>>> Let's create your user account${C_RESET}"
-read -p "Please enter a username: " NEW_USER
-read -s -p "Please enter a password for '$NEW_USER': " NEW_PASS
-echo ""
-read -s -p "Retype password: " NEW_PASS_CONFIRM
-echo ""
-if [ "$NEW_PASS" != "$NEW_PASS_CONFIRM" ]; then echo "Passwords do not match. Aborting."; exit 1; fi
+NEW_USER=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "User Account" --inputbox "Please enter a username for Debian:" 10 50 "erfan" 3>&1 1>&2 2>&3)
+if [ -z "$NEW_USER" ]; then clear; echo "Username required. Aborting."; exit 1; fi
+
+while true; do
+    NEW_PASS=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Password" --passwordbox "Enter a password for '$NEW_USER':" 10 50 3>&1 1>&2 2>&3)
+    NEW_PASS_CONFIRM=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Confirm Password" --passwordbox "Retype password:" 10 50 3>&1 1>&2 2>&3)
+    if [ "$NEW_PASS" == "$NEW_PASS_CONFIRM" ] && [ -n "$NEW_PASS" ]; then
+        break
+    else
+        dialog --title "Error" --msgbox "Passwords do not match or are empty. Please try again." 8 40
+    fi
+done
+
+clear
 
 # --- [3] Base System Setup (in Termux) ---
 echo -e "\n${C_BLUE}>>> [3/8] Setting up base packages in Termux...${C_RESET}"
@@ -231,6 +206,20 @@ EOF
     run_in_debian "chmod +x /usr/local/bin/chromium-hw"
     run_in_debian "sed -i 's|Exec=/usr/bin/chromium|Exec=/usr/local/bin/chromium-hw|g' /usr/share/applications/chromium.desktop || true"
 fi
+
+    echo "--> Installing Debian App Store (GUI)..."
+    cat << 'EOF' | run_as_user "cat > ~/Desktop/Software_Center.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=🛒 Software Center
+Comment=Install Linux applications visually
+Exec=sh -c 'CHOICES=$(zenity --list --checklist --title="🛒 Software Center" --text="Select apps to install:" --print-column=3 --column="Install" --column="App Name" --column="Package" FALSE "Telegram Desktop" "telegram-desktop" FALSE "GIMP (Image Editor)" "gimp" FALSE "Blender (3D Modeling)" "blender" FALSE "OBS Studio" "obs-studio" FALSE "VLC Media Player" "vlc" FALSE "Kdenlive (Video Editor)" "kdenlive" FALSE "Inkscape (Vector)" "inkscape" FALSE "Transmission (Torrent)" "transmission" FALSE "Geany (Text Editor)" "geany" FALSE "Audacity (Audio)" "audacity" --separator=" "); if [ -n "$CHOICES" ]; then PASS=$(zenity --password --title="Authentication Required" --text="Enter your password to install software:"); if [ -n "$PASS" ]; then (echo "Updating package list..."; echo "$PASS" | sudo -S apt-get update; echo "Installing $CHOICES..."; echo "$PASS" | sudo -S DEBIAN_FRONTEND=noninteractive apt-get install -y $CHOICES) | zenity --progress --title="Installing Software" --text="Please wait..." --pulsate --auto-close; zenity --info --text="Installation Complete!"; fi; fi'
+Icon=software-store
+Terminal=false
+Categories=Utility;
+EOF
+    run_as_user "chmod +x ~/Desktop/Software_Center.desktop"
 
 # --- [6] Add-ons (IDE, Box64, Dev Tools) ---
 echo -e "\n${C_BLUE}>>> [6/8] Installing Masterclass Add-ons...${C_RESET}"
@@ -339,6 +328,20 @@ Terminal=false
 Categories=Utility;
 EOF
     run_as_user "chmod +x ~/Desktop/Prepare_MS_Office.desktop"
+
+    # 4. Universal Windows Dependencies Tool
+    cat << 'EOF' | run_as_user "cat > ~/Desktop/Universal_Windows_Libraries.desktop"
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=⚙️ Install Universal Windows Libraries
+Comment=Installs Visual C++ and DirectX compilers for full game compatibility
+Exec=sh -c 'zenity --info --text="Installing Universal Windows Libraries (Visual C++, DX Compilers). This might take a few minutes..." && winetricks -q vcrun2010 vcrun2013 vcrun2015 d3dcompiler_43 d3dcompiler_47 xact && zenity --info --text="Success! Your system is now 100% ready for heavy Windows apps and games."'
+Icon=wine
+Terminal=false
+Categories=Utility;
+EOF
+    run_as_user "chmod +x ~/Desktop/Universal_Windows_Libraries.desktop"
 fi
 
 echo "--> Configuring GPU Tests..."
