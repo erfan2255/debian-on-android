@@ -53,7 +53,7 @@ else
 fi
 
 # --- [2] User Configuration Prompts (VIP UI) ---
-DISP_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Display Server" --menu "Choose your Display Server:" 15 60 3 "1" "VNC Only (Stable)" "2" "Termux-X11 (Hardware Accel)" "3" "Both (Recommended)" 3>&1 1>&2 2>&3)
+DISP_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Display Server" --menu "Choose your Display Server:" 15 60 3 "1" "VNC Only (Stable)" "2" "Termux-X11 (Hardware Accel)" "3" "Both (Recommended)" 3>&1 1>&2 2>&3)
 DISP_CHOICE=${DISP_CHOICE:-3}
 
 WANT_VNC=false
@@ -63,39 +63,39 @@ if [ "$DISP_CHOICE" == "2" ]; then WANT_X11=true; fi
 if [ "$DISP_CHOICE" == "3" ]; then WANT_VNC=true; WANT_X11=true; fi
 
 if $WANT_X11; then
-    HW_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Hardware Acceleration" --menu "Select GPU Acceleration (Termux-X11):" 15 75 3 "1" "Snapdragon/Adreno (Turnip + Zink) - Poco F3 / Pad 7" "2" "Universal (VirGL) - Mali GPUs" "3" "None (Software Rendering)" 3>&1 1>&2 2>&3)
+    HW_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Hardware Acceleration" --menu "Select GPU Acceleration (Termux-X11):" 15 75 3 "1" "Snapdragon/Adreno (Turnip + Zink) - Poco F3 / Pad 7" "2" "Universal (VirGL) - Mali GPUs" "3" "None (Software Rendering)" 3>&1 1>&2 2>&3)
     HW_CHOICE=${HW_CHOICE:-1}
 else
     HW_CHOICE=3
 fi
 
-DE_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Desktop Environment" --menu "Select your Desktop:" 15 60 3 "1" "XFCE4 (Balanced & Beautiful)" "2" "LXQt (Ultra-lightweight battery saver)" "3" "i3wm (Keyboard-driven minimalism)" 3>&1 1>&2 2>&3)
+DE_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Desktop Environment" --menu "Select your Desktop:" 15 60 3 "1" "XFCE4 (Balanced & Beautiful)" "2" "LXQt (Ultra-lightweight battery saver)" "3" "i3wm (Keyboard-driven minimalism)" 3>&1 1>&2 2>&3)
 DE_CHOICE=${DE_CHOICE:-1}
 
-TOUCH_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "UI Scaling & Touch" --menu "Select UI Mode:" 15 65 2 "1" "Tablet Mode (High DPI, On-Screen Keyboard)" "2" "Desktop Mode (Standard Mouse/Keyboard)" 3>&1 1>&2 2>&3)
+TOUCH_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "UI Scaling & Touch" --menu "Select UI Mode:" 15 65 2 "1" "Tablet Mode (High DPI, On-Screen Keyboard)" "2" "Desktop Mode (Standard Mouse/Keyboard)" 3>&1 1>&2 2>&3)
 TOUCH_CHOICE=${TOUCH_CHOICE:-1}
 
-BROW_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Web Browser" --menu "Select Web Browser:" 15 60 4 "1" "Firefox (Standard)" "2" "Chromium (Hardware Accelerated Vulkan)" "3" "Both" "4" "None" 3>&1 1>&2 2>&3)
+BROW_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Web Browser" --menu "Select Web Browser:" 15 60 4 "1" "Firefox (Standard)" "2" "Chromium (Hardware Accelerated Vulkan)" "3" "Both" "4" "None" 3>&1 1>&2 2>&3)
 BROW_CHOICE=${BROW_CHOICE:-3}
 
-IDE_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "AI Code Editor" --menu "Select Graphical AI Editor:" 15 60 4 "1" "Reasonix Desktop App" "2" "Cursor IDE" "3" "Visual Studio Code" "4" "None" 3>&1 1>&2 2>&3)
+IDE_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "AI Code Editor & Agent Hub" --menu "Select Graphical AI Editor / IDE:" 16 68 5 "1" "Google Antigravity 2.0 (ARM64 - Recommended)" "2" "Cursor IDE" "3" "Visual Studio Code" "4" "Reasonix Desktop App" "5" "None" 3>&1 1>&2 2>&3)
 IDE_CHOICE=${IDE_CHOICE:-1}
 
-CLI_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "CLI Coding Agents" --menu "Select Terminal AI Agents:" 15 60 4 "1" "Reasonix CLI" "2" "Aider (Python)" "3" "Both" "4" "None" 3>&1 1>&2 2>&3)
-CLI_CHOICE=${CLI_CHOICE:-4}
+CLI_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "CLI Coding Agents" --menu "Select Terminal AI Agents:" 15 65 5 "1" "Google Antigravity CLI (agy)" "2" "Aider (Python)" "3" "Reasonix CLI" "4" "All of them" "5" "None" 3>&1 1>&2 2>&3)
+CLI_CHOICE=${CLI_CHOICE:-1}
 
-GAMING_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Windows Emulation" --menu "Install Pro-Gamer Windows Emulation (Wine/DXVK)?" 15 60 2 "1" "Yes (Recommended)" "2" "No" 3>&1 1>&2 2>&3)
+GAMING_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Windows Emulation" --menu "Install Pro-Gamer Windows Emulation (Wine/DXVK)?" 15 60 2 "1" "Yes (Recommended)" "2" "No" 3>&1 1>&2 2>&3)
 GAMING_CHOICE=${GAMING_CHOICE:-1}
 
-DEV_CHOICE=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Developer Toolkit" --menu "Install compilers (Python, Node, Go, Rust)?" 15 60 2 "1" "Yes" "2" "No" 3>&1 1>&2 2>&3)
+DEV_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Developer Toolkit" --menu "Install compilers (Python, Node, Go, Rust)?" 15 60 2 "1" "Yes" "2" "No" 3>&1 1>&2 2>&3)
 DEV_CHOICE=${DEV_CHOICE:-1}
 
-NEW_USER=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "User Account" --inputbox "Please enter a username for Debian:" 10 50 "erfan" 3>&1 1>&2 2>&3)
+NEW_USER=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "User Account" --inputbox "Please enter a username for Debian:" 10 50 "erfan" 3>&1 1>&2 2>&3)
 if [ -z "$NEW_USER" ]; then clear; echo "Username required. Aborting."; exit 1; fi
 
 while true; do
-    NEW_PASS=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Password" --passwordbox "Enter a password for '$NEW_USER':" 10 50 3>&1 1>&2 2>&3)
-    NEW_PASS_CONFIRM=$(dialog --backtitle "Erfan2255 Ultimate OS Setup (V12)" --title "Confirm Password" --passwordbox "Retype password:" 10 50 3>&1 1>&2 2>&3)
+    NEW_PASS=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Password" --passwordbox "Enter a password for '$NEW_USER':" 10 50 3>&1 1>&2 2>&3)
+    NEW_PASS_CONFIRM=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Confirm Password" --passwordbox "Retype password:" 10 50 3>&1 1>&2 2>&3)
     if [ "$NEW_PASS" == "$NEW_PASS_CONFIRM" ] && [ -n "$NEW_PASS" ]; then
         break
     else
@@ -231,6 +231,54 @@ if [ "$DEV_CHOICE" == "1" ]; then
 fi
 
 if [ "$IDE_CHOICE" == "1" ]; then
+    echo "--> Installing Google Antigravity 2.0 (ARM64)..."
+    run_in_debian "mkdir -p /opt/antigravity /usr/local/bin /usr/share/applications"
+    run_in_debian "wget -O /tmp/Antigravity.tar.gz 'https://storage.googleapis.com/antigravity-public/antigravity-hub/2.8.1-6512087774658560/linux-arm/Antigravity.tar.gz' || true"
+    run_in_debian "tar -xzf /tmp/Antigravity.tar.gz -C /opt/antigravity --strip-components=1 2>/dev/null || tar -xzf /tmp/Antigravity.tar.gz -C /opt/antigravity || true"
+    run_in_debian "rm -f /tmp/Antigravity.tar.gz"
+    cat << 'EOF' | run_in_debian "cat > /usr/local/bin/antigravity"
+#!/bin/bash
+BIN_PATH=""
+if [ -f "/opt/antigravity/antigravity" ]; then
+    BIN_PATH="/opt/antigravity/antigravity"
+elif [ -f "/opt/antigravity/Antigravity" ]; then
+    BIN_PATH="/opt/antigravity/Antigravity"
+else
+    BIN_PATH=$(find /opt/antigravity -maxdepth 2 -type f -executable | head -n 1)
+fi
+
+if [ -n "$BIN_PATH" ]; then
+    exec "$BIN_PATH" --no-sandbox "$@"
+else
+    echo "Antigravity binary not found in /opt/antigravity"
+fi
+EOF
+    run_in_debian "chmod +x /usr/local/bin/antigravity"
+    cat << 'EOF' | run_in_debian "cat > /usr/share/applications/antigravity.desktop"
+[Desktop Entry]
+Name=Google Antigravity 2.0
+Comment=AI-First Agent Development Platform & Canvas
+Exec=/usr/local/bin/antigravity %F
+Icon=utilities-terminal
+Type=Application
+Categories=Development;IDE;
+Terminal=false
+StartupNotify=true
+EOF
+    run_as_user "mkdir -p ~/Desktop"
+    run_in_debian "cp /usr/share/applications/antigravity.desktop /home/$NEW_USER/Desktop/Antigravity_2.0.desktop"
+    run_as_user "chmod +x ~/Desktop/Antigravity_2.0.desktop"
+elif [ "$IDE_CHOICE" == "2" ]; then
+    echo "--> Installing Cursor IDE..."
+    run_in_debian "curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | tee /etc/apt/keyrings/cursor.gpg > /dev/null"
+    run_in_debian "echo \"deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main\" | tee /etc/apt/sources.list.d/cursor.list > /dev/null"
+    run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cursor"
+elif [ "$IDE_CHOICE" == "3" ]; then
+    echo "--> Installing Visual Studio Code..."
+    run_in_debian "curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /usr/share/keyrings/vscode.gpg > /dev/null"
+    run_in_debian "echo \"deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main\" > /etc/apt/sources.list.d/vscode.list"
+    run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y code"
+elif [ "$IDE_CHOICE" == "4" ]; then
     echo "--> Installing Reasonix Desktop..."
     run_in_debian "URL=\$(curl -s https://api.github.com/repos/esengine/DeepSeek-Reasonix/releases/latest | grep 'browser_download_url.*reasonix-linux-arm64.tar.gz' | cut -d '\"' -f 4) && wget -O /tmp/reasonix.tar.gz \$URL || true"
     run_in_debian "mkdir -p /opt/reasonix && tar -xzf /tmp/reasonix.tar.gz -C /opt/reasonix || true"
@@ -242,27 +290,22 @@ Exec=/usr/local/bin/reasonix
 Type=Application
 Categories=Development;
 EOF"
-elif [ "$IDE_CHOICE" == "2" ]; then
-    echo "--> Installing Cursor IDE..."
-    run_in_debian "curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | tee /etc/apt/keyrings/cursor.gpg > /dev/null"
-    run_in_debian "echo \"deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main\" | tee /etc/apt/sources.list.d/cursor.list > /dev/null"
-    run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cursor"
-elif [ "$IDE_CHOICE" == "3" ]; then
-    echo "--> Installing Visual Studio Code..."
-    run_in_debian "curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /usr/share/keyrings/vscode.gpg > /dev/null"
-    run_in_debian "echo \"deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main\" > /etc/apt/sources.list.d/vscode.list"
-    run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y code"
 fi
 
-if [ "$CLI_CHOICE" == "1" ] || [ "$CLI_CHOICE" == "3" ]; then
-    echo "--> Installing Reasonix CLI..."
-    run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm"
-    run_in_debian "npm install -g reasonix"
+if [ "$CLI_CHOICE" == "1" ] || [ "$CLI_CHOICE" == "4" ]; then
+    echo "--> Installing Google Antigravity CLI (agy)..."
+    run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm python3 python3-pip python3-venv curl"
+    run_in_debian "npm install -g @google/antigravity-cli || npm install -g antigravity || true"
 fi
-if [ "$CLI_CHOICE" == "2" ] || [ "$CLI_CHOICE" == "3" ]; then
+if [ "$CLI_CHOICE" == "2" ] || [ "$CLI_CHOICE" == "4" ]; then
     echo "--> Installing Aider CLI..."
     run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-venv pipx"
     run_as_user "pipx install aider-chat"
+fi
+if [ "$CLI_CHOICE" == "3" ] || [ "$CLI_CHOICE" == "4" ]; then
+    echo "--> Installing Reasonix CLI..."
+    run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm"
+    run_in_debian "npm install -g reasonix"
 fi
 
 if [ "$GAMING_CHOICE" == "1" ]; then
