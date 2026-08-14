@@ -78,11 +78,9 @@ TOUCH_CHOICE=${TOUCH_CHOICE:-1}
 BROW_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Web Browser" --menu "Select Web Browser:" 15 60 4 "1" "Firefox (Standard)" "2" "Chromium (Hardware Accelerated Vulkan)" "3" "Both" "4" "None" 3>&1 1>&2 2>&3)
 BROW_CHOICE=${BROW_CHOICE:-3}
 
-IDE_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "AI Code Editor & Agent Hub" --menu "Select Graphical AI Editor / IDE:" 16 68 5 "1" "Google Antigravity 2.0 (ARM64 - Recommended)" "2" "Cursor IDE" "3" "Visual Studio Code" "4" "Reasonix Desktop App" "5" "None" 3>&1 1>&2 2>&3)
-IDE_CHOICE=${IDE_CHOICE:-1}
+IDE_CHOICES=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "AI Code Editors & IDE Hub" --checklist "Select AI Editors to install (Space to toggle, Enter to confirm):" 18 70 4 "1" "Google Antigravity 2.0 (ARM64)" ON "2" "Cursor IDE" OFF "3" "Visual Studio Code" OFF "4" "Reasonix Desktop App" OFF 3>&1 1>&2 2>&3)
 
-CLI_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "CLI Coding Agents" --menu "Select Terminal AI Agents:" 15 65 5 "1" "Google Antigravity CLI (agy)" "2" "Aider (Python)" "3" "Reasonix CLI" "4" "All of them" "5" "None" 3>&1 1>&2 2>&3)
-CLI_CHOICE=${CLI_CHOICE:-1}
+CLI_CHOICES=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "CLI Coding Agents" --checklist "Select Terminal AI Agents to install (Space to toggle):" 16 65 3 "1" "Google Antigravity CLI (agy)" ON "2" "Aider (Python)" OFF "3" "Reasonix CLI" OFF 3>&1 1>&2 2>&3)
 
 GAMING_CHOICE=$(dialog --backtitle "Ultimate OS Setup (V13)" --title "Windows Emulation" --menu "Install Pro-Gamer Windows Emulation (Wine/DXVK)?" 15 60 2 "1" "Yes (Recommended)" "2" "No" 3>&1 1>&2 2>&3)
 GAMING_CHOICE=${GAMING_CHOICE:-1}
@@ -230,7 +228,8 @@ if [ "$DEV_CHOICE" == "1" ]; then
     run_as_user "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
 fi
 
-if [ "$IDE_CHOICE" == "1" ]; then
+# Install Graphical AI IDEs
+if [[ "$IDE_CHOICES" =~ "1" ]]; then
     echo "--> Installing Google Antigravity 2.0 (ARM64)..."
     run_in_debian "mkdir -p /opt/antigravity /usr/local/bin /usr/share/applications"
     run_in_debian "wget -O /tmp/Antigravity.tar.gz 'https://storage.googleapis.com/antigravity-public/antigravity-hub/2.8.1-6512087774658560/linux-arm/Antigravity.tar.gz' || true"
@@ -268,17 +267,23 @@ EOF
     run_as_user "mkdir -p ~/Desktop"
     run_in_debian "cp /usr/share/applications/antigravity.desktop /home/$NEW_USER/Desktop/Antigravity_2.0.desktop"
     run_as_user "chmod +x ~/Desktop/Antigravity_2.0.desktop"
-elif [ "$IDE_CHOICE" == "2" ]; then
+fi
+
+if [[ "$IDE_CHOICES" =~ "2" ]]; then
     echo "--> Installing Cursor IDE..."
     run_in_debian "curl -fsSL https://downloads.cursor.com/keys/anysphere.asc | gpg --dearmor | tee /etc/apt/keyrings/cursor.gpg > /dev/null"
     run_in_debian "echo \"deb [arch=amd64,arm64 signed-by=/etc/apt/keyrings/cursor.gpg] https://downloads.cursor.com/aptrepo stable main\" | tee /etc/apt/sources.list.d/cursor.list > /dev/null"
     run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y cursor"
-elif [ "$IDE_CHOICE" == "3" ]; then
+fi
+
+if [[ "$IDE_CHOICES" =~ "3" ]]; then
     echo "--> Installing Visual Studio Code..."
     run_in_debian "curl -fSsL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /usr/share/keyrings/vscode.gpg > /dev/null"
     run_in_debian "echo \"deb [arch=amd64,arm64,armhf signed-by=/usr/share/keyrings/vscode.gpg] https://packages.microsoft.com/repos/vscode stable main\" > /etc/apt/sources.list.d/vscode.list"
     run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y code"
-elif [ "$IDE_CHOICE" == "4" ]; then
+fi
+
+if [[ "$IDE_CHOICES" =~ "4" ]]; then
     echo "--> Installing Reasonix Desktop..."
     run_in_debian "URL=\$(curl -s https://api.github.com/repos/esengine/DeepSeek-Reasonix/releases/latest | grep 'browser_download_url.*reasonix-linux-arm64.tar.gz' | cut -d '\"' -f 4) && wget -O /tmp/reasonix.tar.gz \$URL || true"
     run_in_debian "mkdir -p /opt/reasonix && tar -xzf /tmp/reasonix.tar.gz -C /opt/reasonix || true"
@@ -290,19 +295,23 @@ Exec=/usr/local/bin/reasonix
 Type=Application
 Categories=Development;
 EOF"
+    run_as_user "mkdir -p ~/Desktop"
+    run_in_debian "cp /usr/share/applications/reasonix.desktop /home/$NEW_USER/Desktop/Reasonix_Desktop.desktop 2>/dev/null || true"
+    run_as_user "chmod +x ~/Desktop/Reasonix_Desktop.desktop 2>/dev/null || true"
 fi
 
-if [ "$CLI_CHOICE" == "1" ] || [ "$CLI_CHOICE" == "4" ]; then
+# Install Terminal AI Agents
+if [[ "$CLI_CHOICES" =~ "1" ]]; then
     echo "--> Installing Google Antigravity CLI (agy)..."
     run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm python3 python3-pip python3-venv curl"
     run_in_debian "npm install -g @google/antigravity-cli || npm install -g antigravity || true"
 fi
-if [ "$CLI_CHOICE" == "2" ] || [ "$CLI_CHOICE" == "4" ]; then
+if [[ "$CLI_CHOICES" =~ "2" ]]; then
     echo "--> Installing Aider CLI..."
     run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-pip python3-venv pipx"
     run_as_user "pipx install aider-chat"
 fi
-if [ "$CLI_CHOICE" == "3" ] || [ "$CLI_CHOICE" == "4" ]; then
+if [[ "$CLI_CHOICES" =~ "3" ]]; then
     echo "--> Installing Reasonix CLI..."
     run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm"
     run_in_debian "npm install -g reasonix"
