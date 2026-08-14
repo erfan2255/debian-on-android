@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-# Ultimate Unified Debian Setup Script for Termux (v8 GUI Ease-of-Use Masterclass)
-# Features: Power Profiles, Box64, DX12, Android Integration, Double-Click EXE, Zenity
+# Ultimate Unified Debian Setup Script for Termux (V13 Masterclass)
+# Features: VIP TUI, Antigravity 2.0, Box64, DX12, Android Integration, Double-Click EXE, Zenity
 #
 set -e
 
@@ -25,7 +25,7 @@ cat << "EOF"
  |______|_|  |_| \__,_|_| |_\____\____|____/ |____/ 
 
 EOF
-echo -e "\n${C_GREEN}Welcome to the Erfan2255 Ultimate OS Setup (v8)${C_RESET}"
+echo -e "\n${C_GREEN}Welcome to the Ultimate OS Setup (V13)${C_RESET}"
 echo "Configuring the most advanced environment possible..."
 echo ""
 
@@ -129,7 +129,7 @@ run_as_user() { proot-distro login debian --user $NEW_USER --shared-tmp -- /bin/
 
 echo "--> Updating Debian packages..."
 run_in_debian "export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -y"
-run_in_debian "export DEBIAN_FRONTEND=noninteractive && apt-get install -y sudo nano adduser tzdata curl wget dbus-x11 apt-transport-https software-properties-common gpg jq mesa-utils vulkan-tools fonts-vazirmatn fonts-noto-arabic alsa-utils cabextract x11-xserver-utils zenity file xdg-utils"
+run_in_debian "export DEBIAN_FRONTEND=noninteractive && apt-get install -y sudo nano adduser tzdata curl wget dbus-x11 apt-transport-https gpg jq mesa-utils vulkan-tools alsa-utils cabextract x11-xserver-utils zenity file xdg-utils fonts-noto-core fonts-vazirmatn || apt-get install -y sudo nano adduser tzdata curl wget dbus-x11 apt-transport-https gpg jq mesa-utils vulkan-tools alsa-utils cabextract x11-xserver-utils zenity file xdg-utils"
 
 echo "--> Setting timezone to Asia/Tehran..."
 run_in_debian "ln -fs /usr/share/zoneinfo/Asia/Tehran /etc/localtime"
@@ -137,10 +137,11 @@ run_in_debian "dpkg-reconfigure --frontend noninteractive tzdata"
 
 echo "--> Creating new user '$NEW_USER'..."
 echo -e "${NEW_PASS}\n${NEW_PASS}\n${NEW_USER}\n\n\n\n\ny" | run_in_debian "adduser $NEW_USER"
-run_in_debian "usermod $NEW_USER -g sudo"
+run_in_debian "usermod -aG sudo $NEW_USER || adduser $NEW_USER sudo"
+run_in_debian "mkdir -p /etc/sudoers.d && echo '$NEW_USER ALL=(ALL:ALL) ALL' > /etc/sudoers.d/$NEW_USER && chmod 0440 /etc/sudoers.d/$NEW_USER"
 
 echo "--> Installing Desktop Environment & Apps..."
-CORE_APPS="pulseaudio pavucontrol libreoffice libreoffice-gtk3 libreoffice-gnome gimp vlc kdenlive"
+CORE_APPS="pulseaudio pavucontrol libreoffice libreoffice-gtk3 gimp vlc kdenlive"
 if [ "$DE_CHOICE" == "1" ]; then
     CORE_APPS="$CORE_APPS xfce4 xfce4-goodies xfce4-whiskermenu-plugin numix-gtk-theme greybird-gtk-theme plank"
     START_CMD="xfce4-session"
@@ -148,7 +149,7 @@ elif [ "$DE_CHOICE" == "2" ]; then
     CORE_APPS="$CORE_APPS lxqt coreutils lxqt-core numix-gtk-theme"
     START_CMD="startlxqt"
 elif [ "$DE_CHOICE" == "3" ]; then
-    CORE_APPS="$CORE_APPS i3-wm i3status dmenu stterm"
+    CORE_APPS="$CORE_APPS i3-wm i3status dmenu xterm"
     START_CMD="i3"
 fi
 
@@ -157,7 +158,7 @@ if [ "$BROW_CHOICE" == "1" ] || [ "$BROW_CHOICE" == "3" ]; then CORE_APPS="$CORE
 if [ "$BROW_CHOICE" == "2" ] || [ "$BROW_CHOICE" == "3" ]; then CORE_APPS="$CORE_APPS chromium"; fi
 if $WANT_VNC; then CORE_APPS="$CORE_APPS tigervnc-standalone-server"; fi
 
-echo "${NEW_PASS}" | run_as_user "sudo -S DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $CORE_APPS"
+run_in_debian "export DEBIAN_FRONTEND=noninteractive && apt-get install -y --no-install-recommends $CORE_APPS || apt-get install -y $CORE_APPS"
 
 # --- [5] Touch Optimizations & Magic Desktop ---
 echo -e "\n${C_BLUE}>>> [5/8] Configuring Touch UI & Android Integration...${C_RESET}"
@@ -199,7 +200,7 @@ if [ "$BROW_CHOICE" == "2" ] || [ "$BROW_CHOICE" == "3" ]; then
     echo "--> Configuring Hardware Accelerated Chromium..."
     cat << 'EOF' | run_in_debian "cat > /usr/local/bin/chromium-hw"
 #!/bin/bash
-exec /usr/bin/chromium --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan "$@"
+exec /usr/bin/chromium --no-sandbox --enable-features=Vulkan,VulkanFromANGLE,DefaultANGLEVulkan "$@"
 EOF
     run_in_debian "chmod +x /usr/local/bin/chromium-hw"
     run_in_debian "sed -i 's|Exec=/usr/bin/chromium|Exec=/usr/local/bin/chromium-hw|g' /usr/share/applications/chromium.desktop || true"
@@ -527,10 +528,12 @@ echo ""
 echo -e "1. Run '${C_CYAN}start-audio${C_RESET}' in Termux first if you want sound."
 echo -e "2. Run '${C_CYAN}start-x11${C_RESET}' to pick your Battery Profile and launch the desktop."
 echo ""
-echo -e "${C_CYAN}--- V8 Tips (GUI Edition) ---${C_RESET}"
+echo -e "${C_CYAN}--- Masterclass Pro Tips ---${C_RESET}"
 echo -e "- Just DOUBLE-CLICK any .exe file to run it!"
 echo -e "- Use the '🎮 Run Windows App' tool on your desktop for a visual file picker."
+echo -e "- Use '⚙️ Install Universal Windows Libraries' for full PC app & game compatibility."
+echo -e "- Open '🛒 Software Center' to install massive Linux apps with one click."
 echo ""
 echo -e "${C_GREEN}=================================================${C_RESET}"
-echo -e "${C_CYAN}             Created by Erfan2255                 ${C_RESET}"
+echo -e "${C_CYAN}         Created by CoreLand & Erfan2255         ${C_RESET}"
 echo -e "${C_GREEN}=================================================${C_RESET}"
