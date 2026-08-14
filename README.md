@@ -12,7 +12,7 @@
 
 <div align="center">
     <img src="https://github.com/erfan2255/debian-on-android/blob/main/Images/Openlogo-debianV2.svg" alt="Debian Logo" width="100"/>
-    <h1>Ultimate OS - Debian 13 on Android - V12 Masterclass</h1>
+    <h1>Ultimate OS - Debian 13 on Android - V13 Masterclass</h1>
     <h3>Turn your Android device into a portable Linux PC & Windows Gaming Powerhouse</h3>
     <p>A simple, one-line command to install a deeply optimized, hardware-accelerated Debian environment with AI coding agents and full Windows emulation on any Android device using Termux.</p>
     <p>
@@ -29,16 +29,16 @@
 
 <hr>
 
-<h3>► Masterclass Features (V12 Updates)</h3>
+<h3>► Masterclass Features (V13 Updates)</h3>
 <ul>
     <li><strong>🚀 VIP Graphical Setup:</strong> Beautiful, full-screen curses-based TUI installer (Dialog). Use your arrow keys to select your OS features visually instead of typing in a standard terminal.</li>
+    <li><strong>🤖 Google Antigravity 2.0 & AI Hub:</strong> Native ARM64 integration of Google Antigravity 2.0 and Antigravity CLI (`agy`), alongside Cursor IDE, VS Code, and Aider.</li>
     <li><strong>🎮 Pro-Gamer Windows Emulation:</strong> Built-in Box86/Box64 and Wine integration. Automatically installs DXVK, VKD3D (DirectX 12), and D8VK for flawless AAA gaming.</li>
     <li><strong>⚙️ Universal Windows Libraries:</strong> 1-click GUI tool to permanently inject Visual C++ Redistributables (2010-2015) and DX compilers to stop DLL errors on WineHQ.</li>
     <li><strong>📚 MS Office Compatibility:</strong> Native 1-click GUI tool to prepare your environment for MS Office (Word, Excel, PowerPoint) and SPSS via `winetricks`.</li>
     <li><strong>🖱️ Terminal-Free Windows Apps:</strong> Double-click `.exe` files directly in your Linux file manager to run them, or use the visual "Run Windows App" GUI tool!</li>
     <li><strong>🛒 Debian Software Center:</strong> Install massive Linux apps (Telegram, Discord, GIMP, OBS Studio, Blender, VS Code) using a visual checkbox GUI. Zero terminal required!</li>
     <li><strong>🔋 OS-Power Management System:</strong> Switch seamlessly between 🟢 Power Saver (Software rendering), 🟡 Balanced, and 🔴 Performance (Turnip GPU Overclocking) modes to save battery.</li>
-    <li><strong>🤖 AI Coding Hub:</strong> Pre-configured options to install Reasonix Desktop/CLI, Cursor IDE, Aider, and VS Code.</li>
     <li><strong>📱 The Magic Desktop:</strong> Automatically synchronizes your Android `Downloads`, `DCIM`, and `Documents` folders to your Linux desktop.</li>
     <li><strong>👆 Tablet Touch Optimizations:</strong> Dedicated Tablet Mode that enables High DPI UI scaling and the Onboard virtual keyboard for flawless touch controls on devices like the Poco F3 or Pad 7.</li>
     <li><strong>🌐 Hardware Accelerated Web:</strong> Choose between Firefox ESR or a specially configured Chromium browser with Vulkan flags for 1080p/4K 60fps video playback.</li>
@@ -106,7 +106,7 @@
         </tr>
         <tr>
             <td style="padding: 8px;"><strong>Productivity & AI</strong></td>
-            <td style="padding: 8px;">Reasonix, Cursor, Aider, VS Code, LibreOffice</td>
+            <td style="padding: 8px;">Google Antigravity 2.0 / CLI (`agy`), Cursor, VS Code, Reasonix, Aider, LibreOffice</td>
         </tr>
     </tbody>
 </table>
