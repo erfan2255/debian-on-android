@@ -127,6 +127,12 @@ echo -e "\n${C_BLUE}>>> [4/8] Configuring Debian environment...${C_RESET}"
 run_in_debian() { proot-distro login debian --shared-tmp -- /bin/bash -c "$@"; }
 run_as_user() { proot-distro login debian --user $NEW_USER --shared-tmp -- /bin/bash -c "$@"; }
 
+echo "--> Optimizing package manager for ultra-fast I/O..."
+run_in_debian "mkdir -p /etc/dpkg/dpkg.cfg.d /etc/apt/apt.conf.d"
+run_in_debian "echo 'force-unsafe-io' > /etc/dpkg/dpkg.cfg.d/02apt-speedup"
+run_in_debian "echo 'Acquire::Languages \"none\";' > /etc/apt/apt.conf.d/99speedup"
+run_in_debian "echo 'Acquire::http::Pipeline-Depth \"10\";' >> /etc/apt/apt.conf.d/99speedup"
+
 echo "--> Updating Debian packages..."
 run_in_debian "export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get upgrade -y"
 run_in_debian "export DEBIAN_FRONTEND=noninteractive && apt-get install -y sudo nano adduser tzdata curl wget dbus-x11 apt-transport-https gpg jq mesa-utils vulkan-tools alsa-utils cabextract x11-xserver-utils zenity file xdg-utils fonts-noto-core fonts-vazirmatn || apt-get install -y sudo nano adduser tzdata curl wget dbus-x11 apt-transport-https gpg jq mesa-utils vulkan-tools alsa-utils cabextract x11-xserver-utils zenity file xdg-utils"
@@ -140,8 +146,8 @@ echo -e "${NEW_PASS}\n${NEW_PASS}\n${NEW_USER}\n\n\n\n\ny" | run_in_debian "addu
 run_in_debian "usermod -aG sudo $NEW_USER || adduser $NEW_USER sudo"
 run_in_debian "mkdir -p /etc/sudoers.d && echo '$NEW_USER ALL=(ALL:ALL) ALL' > /etc/sudoers.d/$NEW_USER && chmod 0440 /etc/sudoers.d/$NEW_USER"
 
-echo "--> Installing Desktop Environment & Apps..."
-CORE_APPS="pulseaudio pavucontrol libreoffice libreoffice-gtk3 gimp vlc kdenlive"
+echo "--> Installing Desktop Environment & Core Apps..."
+CORE_APPS="pulseaudio pavucontrol vlc mousepad"
 if [ "$DE_CHOICE" == "1" ]; then
     CORE_APPS="$CORE_APPS xfce4 xfce4-goodies xfce4-whiskermenu-plugin numix-gtk-theme greybird-gtk-theme plank"
     START_CMD="xfce4-session"
@@ -213,7 +219,7 @@ Version=1.0
 Type=Application
 Name=🛒 Software Center
 Comment=Install Linux applications visually
-Exec=sh -c 'CHOICES=$(zenity --list --checklist --title="🛒 Software Center" --text="Select apps to install:" --print-column=3 --column="Install" --column="App Name" --column="Package" FALSE "Telegram Desktop" "telegram-desktop" FALSE "GIMP (Image Editor)" "gimp" FALSE "Blender (3D Modeling)" "blender" FALSE "OBS Studio" "obs-studio" FALSE "VLC Media Player" "vlc" FALSE "Kdenlive (Video Editor)" "kdenlive" FALSE "Inkscape (Vector)" "inkscape" FALSE "Transmission (Torrent)" "transmission" FALSE "Geany (Text Editor)" "geany" FALSE "Audacity (Audio)" "audacity" --separator=" "); if [ -n "$CHOICES" ]; then PASS=$(zenity --password --title="Authentication Required" --text="Enter your password to install software:"); if [ -n "$PASS" ]; then (echo "Updating package list..."; echo "$PASS" | sudo -S apt-get update; echo "Installing $CHOICES..."; echo "$PASS" | sudo -S DEBIAN_FRONTEND=noninteractive apt-get install -y $CHOICES) | zenity --progress --title="Installing Software" --text="Please wait..." --pulsate --auto-close; zenity --info --text="Installation Complete!"; fi; fi'
+Exec=sh -c 'CHOICES=$(zenity --list --checklist --title="🛒 Software Center" --text="Select apps to install:" --print-column=3 --column="Install" --column="App Name" --column="Package" FALSE "LibreOffice Suite" "libreoffice libreoffice-gtk3" FALSE "GIMP (Image Editor)" "gimp" FALSE "Kdenlive (Video Editor)" "kdenlive" FALSE "Telegram Desktop" "telegram-desktop" FALSE "Blender (3D Modeling)" "blender" FALSE "OBS Studio" "obs-studio" FALSE "Inkscape (Vector)" "inkscape" FALSE "Transmission (Torrent)" "transmission" FALSE "Geany (Text Editor)" "geany" FALSE "Audacity (Audio)" "audacity" --separator=" "); if [ -n "$CHOICES" ]; then PASS=$(zenity --password --title="Authentication Required" --text="Enter your password to install software:"); if [ -n "$PASS" ]; then (echo "Updating package list..."; echo "$PASS" | sudo -S apt-get update; echo "Installing $CHOICES..."; echo "$PASS" | sudo -S DEBIAN_FRONTEND=noninteractive apt-get install -y $CHOICES) | zenity --progress --title="Installing Software" --text="Please wait..." --pulsate --auto-close; zenity --info --text="Installation Complete!"; fi; fi'
 Icon=software-store
 Terminal=false
 Categories=Utility;
@@ -320,12 +326,19 @@ fi
 
 if [ "$GAMING_CHOICE" == "1" ]; then
     echo "--> Installing Pro-Gamer Windows Emulation (Box86/64, Wine, DXVK, VKD3D)..."
-    run_in_debian "dpkg --add-architecture armhf"
-    run_in_debian "wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list"
-    run_in_debian "wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg"
-    run_in_debian "wget https://ryanfortner.github.io/box86-debs/box86.list -O /etc/apt/sources.list.d/box86.list"
-    run_in_debian "wget -qO- https://ryanfortner.github.io/box86-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg"
-    run_in_debian "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y box64 box86 wine winetricks libc6:armhf p7zip-full fonts-wine"
+    run_in_debian "dpkg --add-architecture armhf || true"
+    
+    # 1. Box64 repo (arm64)
+    run_in_debian "wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg || true"
+    run_in_debian "echo 'deb [arch=arm64 signed-by=/etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg] https://ryanfortner.github.io/box64-debs/debian ./' > /etc/apt/sources.list.d/box64.list"
+
+    # 2. Box86 repo (armhf)
+    run_in_debian "wget -qO- https://ryanfortner.github.io/box86-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg || true"
+    run_in_debian "echo 'deb [arch=armhf signed-by=/etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg] https://ryanfortner.github.io/box86-debs/debian ./' > /etc/apt/sources.list.d/box86.list"
+
+    # 3. Update and Install with Fallbacks
+    run_in_debian "apt-get update || true"
+    run_in_debian "DEBIAN_FRONTEND=noninteractive apt-get install -y box64-android box86-android:armhf wine winetricks libc6:armhf p7zip-full fonts-wine || DEBIAN_FRONTEND=noninteractive apt-get install -y box64 box86:armhf wine winetricks libc6:armhf p7zip-full fonts-wine || DEBIAN_FRONTEND=noninteractive apt-get install -y box64-generic-arm wine winetricks p7zip-full fonts-wine || true"
     
     cat << 'EOF' | run_in_debian "cat > /usr/local/bin/install-windows-graphics"
 #!/bin/bash
