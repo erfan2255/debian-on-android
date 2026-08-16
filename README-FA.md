@@ -63,7 +63,7 @@
 <pre><code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/erfan2255/debian-on-android/main/setup.sh)"</code></pre>
 
 <h4>۲. سیستم عامل نهایی خود را بسازید</h4>
-<p>این اسکریپت جادوگر تعاملی نصب را اجرا می‌کند. شما می‌توانید سرور نمایش خود (X11/VNC)، درایورهای گرافیک (Turnip/VirGL)، محیط دسکتاپ (XFCE/LXQt/i3)، مرورگر، ابزارهای هوش مصنوعی و تنظیمات بازی ویندوز را انتخاب کنید.</p>
+<p>این اسکریپت جادوگر تعاملی و VIP نسخه V13 را اجرا می‌کند. شما می‌توانید سرور نمایش خود (X11/VNC)، درایورهای گرافیک (Turnip/VirGL)، محیط دسکتاپ (XFCE/LXQt/i3)، مرورگر، ابزارهای هوش مصنوعی (Google Antigravity, Cursor, VS Code, Reasonix) و تنظیمات بازی ویندوز را انتخاب کنید.</p>
 
 <h4>۳. ورود و انتخاب پروفایل انرژی</h4>
 <p>پس از اتمام نصب، یک دستور میانبر به نام <code>start-x11</code> در ترمینال Termux ایجاد می‌شود. برای اجرای دسکتاپ خود فقط کافیست تایپ کنید:</p>
@@ -75,6 +75,9 @@
     <li><strong>صدا:</strong> اگر صدا می‌خواهید، قبل از راه‌اندازی دسکتاپ، دستور <code>start-audio</code> را در Termux وارد کنید.</li>
     <li><strong>بکاپ‌گیری:</strong> برای ایجاد یک اسنپ‌شات کامل از سیستم در پوشه Downloads اندروید، دستور <code>backup-debian</code> را در Termux تایپ کنید. برای بازیابی آن از دستور <code>restore-debian</code> استفاده کنید.</li>
     <li><strong>تست گرافیک:</strong> دستور <code>gpu-test</code> را در داخل دبیان تایپ کنید تا از کارکرد صحیح شتاب‌دهنده‌های Vulkan/OpenGL خود مطمئن شوید.</li>
+    <li><strong>نصب مستقل برنامه‌های هوش مصنوعی:</strong> نصب مستقیم Google Antigravity 2.0 و Reasonix Desktop در هر لینوکس/دبیان دیگر با یک دستور:
+        <pre><code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/erfan2255/debian-on-android/main/install-ai-ides.sh)"</code></pre>
+    </li>
 </ul>
 
 <hr>
