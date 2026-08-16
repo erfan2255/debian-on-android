@@ -63,7 +63,7 @@
 <pre><code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/erfan2255/debian-on-android/main/setup.sh)"</code></pre>
 
 <h4>2. Build Your Ultimate OS</h4>
-<p>The script will launch the V8 interactive wizard. You can choose your Display Server (X11/VNC), GPU Drivers (Turnip/VirGL), Desktop Environment (XFCE/LXQt/i3), Browser, AI tools, and Windows Gaming options.</p>
+<p>The script will launch the V13 VIP interactive wizard. You can choose your Display Server (X11/VNC), GPU Drivers (Turnip/VirGL), Desktop Environment (XFCE/LXQt/i3), Browser, AI tools (Google Antigravity, Cursor, VS Code, Reasonix), and Windows Gaming options.</p>
 
 <h4>3. Log In and Pick a Power Profile</h4>
 <p>After the installation is complete, a <code>start-x11</code> alias will be created in Termux. To launch your desktop, simply type:</p>
@@ -75,6 +75,9 @@
     <li><strong>Audio:</strong> If you want sound, type <code>start-audio</code> in Termux before launching your desktop.</li>
     <li><strong>Backups:</strong> Type <code>backup-debian</code> in Termux to create a full system snapshot in your Android Downloads folder. Type <code>restore-debian</code> to recover it.</li>
     <li><strong>Graphics Test:</strong> Type <code>gpu-test</code> inside Debian to verify your Vulkan/OpenGL acceleration is working.</li>
+    <li><strong>Standalone AI IDEs:</strong> Install Google Antigravity 2.0 & Reasonix Desktop on any Debian/Ubuntu system:
+        <pre><code>bash -c "$(curl -fsSL https://raw.githubusercontent.com/erfan2255/debian-on-android/main/install-ai-ides.sh)"</code></pre>
+    </li>
 </ul>
 
 <hr>
