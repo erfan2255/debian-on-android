@@ -111,12 +111,7 @@ pkg install proot-distro pulseaudio wget git curl tar zstd -y
 if $WANT_X11; then
     echo "--> Installing X11 and Hardware Acceleration packages..."
     pkg install x11-repo tur-repo -y
-    pkg install termux-x11-nightly -y
-    if [ "$HW_CHOICE" == "1" ]; then
-        pkg install mesa-zink virglrenderer-mesa-zink vulkan-loader-android -y
-    elif [ "$HW_CHOICE" == "2" ]; then
-        pkg install virglrenderer-android -y
-    fi
+    pkg install termux-x11-nightly virglrenderer-android mesa-zink vulkan-loader-android -y
 fi
 
 echo "--> Installing Debian via proot-distro..."
@@ -147,12 +142,12 @@ run_in_debian "usermod -aG sudo $NEW_USER || adduser $NEW_USER sudo"
 run_in_debian "mkdir -p /etc/sudoers.d && echo '$NEW_USER ALL=(ALL:ALL) ALL' > /etc/sudoers.d/$NEW_USER && chmod 0440 /etc/sudoers.d/$NEW_USER"
 
 echo "--> Installing Desktop Environment & Core Apps..."
-CORE_APPS="pulseaudio pavucontrol vlc mousepad"
+CORE_APPS="pulseaudio pavucontrol vlc mousepad arc-theme elementary-xfce-icon-theme at-spi2-core gir1.2-atspi-2.0"
 if [ "$DE_CHOICE" == "1" ]; then
-    CORE_APPS="$CORE_APPS xfce4 xfce4-goodies xfce4-whiskermenu-plugin numix-gtk-theme greybird-gtk-theme plank"
+    CORE_APPS="$CORE_APPS xfce4 xfce4-goodies xfce4-whiskermenu-plugin plank"
     START_CMD="xfce4-session"
 elif [ "$DE_CHOICE" == "2" ]; then
-    CORE_APPS="$CORE_APPS lxqt coreutils lxqt-core numix-gtk-theme"
+    CORE_APPS="$CORE_APPS lxqt coreutils lxqt-core"
     START_CMD="startlxqt"
 elif [ "$DE_CHOICE" == "3" ]; then
     CORE_APPS="$CORE_APPS i3-wm i3status dmenu xterm"
@@ -182,7 +177,7 @@ if [ "$DE_CHOICE" == "1" ]; then
 [Desktop Entry]
 Type=Application
 Name=Apply Theme
-Exec=sh -c 'xfconf-query -c xsettings -p /Net/ThemeName -s "Numix" --create -t string; xfconf-query -c xfwm4 -p /general/theme -s "Numix" --create -t string'
+Exec=sh -c 'xfconf-query -c xsettings -p /Net/ThemeName -s "Arc" --create -t string; xfconf-query -c xsettings -p /Net/IconThemeName -s "elementary-xfce" --create -t string; xfconf-query -c xfwm4 -p /general/theme -s "Arc" --create -t string'
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
@@ -466,67 +461,61 @@ fi
 
 if $WANT_X11; then
     # Generate os-power script
-    cat << EOF > $HOME/os-power
+    cat << 'EOF' > $HOME/os-power
 #!/bin/bash
 echo -e "\n\033[1;33m>>> Select Power Profile\033[0m"
-echo "1) 🟢 Power Saver (No GPU Accel, No Animations, Low CPU)"
-echo "2) 🟡 Balanced (Standard GPU Accel)"
-echo "3) 🔴 Performance (GPU Overclock, Max CPU Dynarec)"
+echo "1) 🟢 Power Saver (Software Rendering, Low CPU & Battery)"
+echo "2) 🟡 Balanced (Hardware GPU Acceleration - Smooth 60fps)"
+echo "3) 🔴 Performance (Max GPU Acceleration + Dynarec Max)"
 read -p "Choose [2]: " pmode
-pmode=\${pmode:-2}
+pmode=${pmode:-2}
 
 export DISPLAY=:0
 export PULSE_SERVER=127.0.0.1
 export PROOT_NO_SECCOMP=1
-unset TU_DEBUG
-unset BOX64_DYNAREC_BIGBLOCK
-unset BOX64_DYNAREC_STRONGMEM
-DISABLE_COMPOSITOR=0
 
-if [ "\$pmode" == "1" ]; then
+# Clean up any lingering server processes
+killall -9 termux-x11 virgl_test_server_android 2>/dev/null || true
+sleep 1
+
+# Start Termux-X11 display server
+termux-x11 :0 -ac &
+sleep 2
+
+if [ "$pmode" == "1" ]; then
     echo "Starting in Power Saver Mode..."
-    export GALLIUM_DRIVER=llvmpipe
-    DISABLE_COMPOSITOR=1
-elif [ "\$pmode" == "2" ]; then
-    echo "Starting in Balanced Mode..."
-EOF
-    if [ "$HW_CHOICE" == "1" ]; then
-        echo "    export MESA_LOADER_DRIVER_OVERRIDE=zink" >> $HOME/os-power
-        echo "    export VK_ICD_FILENAMES=\$PREFIX/share/vulkan/icd.d/freedreno_icd.aarch64.json" >> $HOME/os-power
-        echo "    export GALLIUM_DRIVER=zink" >> $HOME/os-power
-    elif [ "$HW_CHOICE" == "2" ]; then
-        echo "    export GALLIUM_DRIVER=virpipe" >> $HOME/os-power
-        echo "    virgl_test_server_android &" >> $HOME/os-power
-    fi
-    cat << EOF >> $HOME/os-power
-elif [ "\$pmode" == "3" ]; then
+    DEB_GPU="export GALLIUM_DRIVER=llvmpipe; export MESA_LOADER_DRIVER_OVERRIDE=llvmpipe;"
+    DISABLE_COMP=1
+elif [ "$pmode" == "2" ]; then
+    echo "Starting in Balanced Hardware-Accelerated Mode..."
+    virgl_test_server_android &
+    sleep 1
+    DEB_GPU="export GALLIUM_DRIVER=virpipe; export MESA_GL_VERSION_OVERRIDE=4.0; export MESA_GLES_VERSION_OVERRIDE=3.2; export LIBGL_ALWAYS_SOFTWARE=0;"
+    DISABLE_COMP=0
+elif [ "$pmode" == "3" ]; then
     echo "Starting in Performance Mode..."
-EOF
-    if [ "$HW_CHOICE" == "1" ]; then
-        echo "    export MESA_LOADER_DRIVER_OVERRIDE=zink" >> $HOME/os-power
-        echo "    export VK_ICD_FILENAMES=\$PREFIX/share/vulkan/icd.d/freedreno_icd.aarch64.json" >> $HOME/os-power
-        echo "    export GALLIUM_DRIVER=zink" >> $HOME/os-power
-        echo "    export TU_DEBUG=noconform" >> $HOME/os-power
-    elif [ "$HW_CHOICE" == "2" ]; then
-        echo "    export GALLIUM_DRIVER=virpipe" >> $HOME/os-power
-        echo "    virgl_test_server_android &" >> $HOME/os-power
-    fi
-    cat << EOF >> $HOME/os-power
-    export BOX64_DYNAREC_BIGBLOCK=1
-    export BOX64_DYNAREC_STRONGMEM=1
+    virgl_test_server_android &
+    sleep 1
+    DEB_GPU="export GALLIUM_DRIVER=virpipe; export MESA_GL_VERSION_OVERRIDE=4.0; export MESA_GLES_VERSION_OVERRIDE=3.2; export LIBGL_ALWAYS_SOFTWARE=0; export TU_DEBUG=noconform; export BOX64_DYNAREC_BIGBLOCK=1; export BOX64_DYNAREC_STRONGMEM=1;"
+    DISABLE_COMP=0
 fi
 
-termux-x11 :0 & sleep 3
-proot-distro login debian --user $NEW_USER --shared-tmp --bind /sdcard:/sdcard -- /bin/bash -c "
-    export DISPLAY=:0; export PULSE_SERVER=127.0.0.1;
-    if [ \\\"\$DISABLE_COMPOSITOR\\\" == \\\"1\\\" ]; then
-        xfconf-query -c xfwm4 -p /general/use_compositing -s false || true
+# Launch Debian desktop session
+proot-distro login debian --user NEW_USER_PLACEHOLDER --shared-tmp -- /bin/bash -c "
+    export DISPLAY=:0
+    export PULSE_SERVER=127.0.0.1
+    $DEB_GPU
+    if [ \"$DISABLE_COMP\" = \"1\" ]; then
+        xfconf-query -c xfwm4 -p /general/use_compositing -s false 2>/dev/null || true
     else
-        xfconf-query -c xfwm4 -p /general/use_compositing -s true || true
+        xfconf-query -c xfwm4 -p /general/use_compositing -s true 2>/dev/null || true
     fi
-    dbus-launch --exit-with-session $START_CMD
+    service dbus start 2>/dev/null || true
+    dbus-launch --exit-with-session START_CMD_PLACEHOLDER
 "
 EOF
+    sed -i "s|NEW_USER_PLACEHOLDER|$NEW_USER|g" $HOME/os-power
+    sed -i "s|START_CMD_PLACEHOLDER|$START_CMD|g" $HOME/os-power
     chmod +x $HOME/os-power
     echo "alias start-x11='~/os-power'" >> $TERMUX_BASHRC
 fi
